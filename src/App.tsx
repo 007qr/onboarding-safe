@@ -9,6 +9,7 @@ const App: Component = () => {
             <div class="z-10 relative flex flex-col gap-8 h-screen justify-center w-full max-w-lg mx-auto">
                 <div>
                     <h2 class="text-[48px] text-balance font-semibold leading-tight text-black/80 tracking-tighter">
+                        <span class="sr-only">Hey👋 You're new here. Let's get you setup!</span>
                         <For each={Array.from(firstLine.split(" "))}>
                             {(el, index) => (
                                 <>
@@ -33,8 +34,8 @@ const App: Component = () => {
                     <p>Enter your name.</p>
                 </div>
                 <div class="bg-gray-200 rounded-xl leading-relaxed p-4 fade-in [animation-delay:1s]">
-                    <p class="text-gray-500">Your name</p>
-                    <p>Vish Vadlamani</p>
+                    <label class="text-gray-500 block">Your name</label>
+                    <input class="outline-none focus:outline-none " value="Vish Vadlamani" placeholder=""/>
                 </div>
             </div>
             <div
