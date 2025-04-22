@@ -168,10 +168,15 @@ const App: Component = () => {
                     <p>Enter your name.</p>
                 </div>
                 <div class="fade-in [animation-delay:1s] rounded-[22px] drop-shadow-lg font-inter">
-                    <input
-                        type="text"
-                        class="outline-none w-full leading-relaxed p-3 border-2 rounded-4xl border-gray-300 bg-[#f5f5f5]"
-                    />
+                    <div class="relative">
+                        <input
+                            type="text"
+                            class="outline-none w-full leading-relaxed p-3 border-2 rounded-4xl border-gray-300 bg-[#f5f5f5]"
+                        />
+                        <button class="absolute top-[12px] right-[12px] cursor-pointer rounded-full bg-black w-[32px] h-[32px] flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M17.073 12.5H5.5q-.213 0-.357-.143T5 12t.143-.357t.357-.143h11.573l-3.735-3.734q-.146-.147-.152-.345t.152-.363q.166-.166.357-.168t.357.162l4.383 4.383q.13.13.183.267t.053.298t-.053.298t-.183.268l-4.383 4.382q-.146.146-.347.153t-.367-.159q-.16-.165-.162-.354t.162-.354z"/></svg>
+                        </button>
+                    </div>
                     {/* <div class="leading-relaxed p-3 border-2 border-b-0 rounded-t-[22px] border-gray-300">
                         <label class="text-gray-600 block text-sm font-inter">Your name</label>
                         <input type="text" class="outline-none focus:outline-none font-inter" value="Vish Vadlamani" placeholder=""/>
