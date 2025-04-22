@@ -6,6 +6,9 @@ html {
     font-family: "Wix Madefor Display", sans-serif;
 }
 
+.font-inter {
+    font-family: "Inter", sans-serif !important;
+}
 
 .fade-in {
     opacity: 0;
@@ -20,7 +23,7 @@ html {
 .animate-fade-in {
     opacity: 0;
     animation: fade-in 1s steps(45, end) forwards;
-}
+} 
 
 @keyframes fade-in {
     from {
@@ -45,3 +48,4 @@ html {
         filter: blur(0px);
     }
 }
+

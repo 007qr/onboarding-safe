@@ -1,8 +1,33 @@
-import { Component, For } from "solid-js";
+import { Component, createEffect, For } from "solid-js";
 
 const App: Component = () => {
     const firstLine = "Hey👋 You're new here.";
     const secondLine = "Let's get you setup!";
+
+    // create Effect for Bg blur Animation
+    createEffect(() => {
+        let hue = 30;
+        let direction = -1;
+        function animate() {
+            hue += direction * 1;
+            if (hue <= 0 || hue >= 359) direction *= -1;
+
+            let div = document.getElementById("blur-bg-effect-animation") as HTMLDivElement;
+    
+            div.style.background = `linear-gradient(
+                to top,
+                rgb(247, 247, 247) 32%,
+                hsl(${hue}, 100%, 70%) 60%,
+                hsl(${Math.max(hue - 100, 0)}, 90%, 40%) 100%
+              )`;
+          
+
+            setTimeout(() => requestAnimationFrame(animate), 50);
+        }
+
+        animate();
+
+    }, []);
 
     return (
         <>
@@ -33,18 +58,24 @@ const App: Component = () => {
                     <p>Let's get your account ready.</p>
                     <p>Enter your name.</p>
                 </div>
-                <div class="bg-gray-200 rounded-xl leading-relaxed p-4 fade-in [animation-delay:1s]">
-                    <label class="text-gray-500 block">Your name</label>
-                    <input class="outline-none focus:outline-none " value="Vish Vadlamani" placeholder=""/>
+                <div class="fade-in [animation-delay:1s] rounded-[22px] drop-shadow-lg font-inter">
+                    <div class="leading-relaxed p-3 border-2 border-b-0 rounded-t-[22px] border-gray-300">
+                        <label class="text-gray-600 block text-sm font-inter">Your name</label>
+                        <input type="text" class="outline-none focus:outline-none font-inter" value="Vish Vadlamani" placeholder=""/>
+                    </div>
+                    <div class="leading-relaxed p-3 border-2 rounded-b-[22px] border-gray-300">
+                        <label class="text-gray-600 block text-sm font-inter">Mobile number</label>
+                        <input type="tel" class="outline-none focus:outline-none font-inter" value="+1 555 555 5556" placeholder=""/>
+                    </div>
                 </div>
             </div>
             <div
-                class="w-screen h-screen flex items-center justify-center animate-spin fixed top-0 left-0 z-0 pointer-events-none"
-                style="animation-duration:30s;will-change:transform"
+                class="w-screen h-screen flex items-center justify-center fixed top-0 left-0 z-0 pointer-events-none"
             >
                 <div
-                    class="w-[100vh] h-[100vh] sm:w-[150vh] sm:h-[150vh] md:w-[150vh] md:h-[150vh] lg:w-screen lg:h-[150vh] absolute bottom-1/4 left-1/2 -translate-x-1/2"
-                    style="will-change: background; background: linear-gradient(to top, rgb(247, 247, 247) 32%, rgb(179, 207, 248) 60%, rgb(38, 63, 106) 100%); mask-image: radial-gradient(circle, black 30%, transparent 80%);"
+                    class="animate-bg w-[100vh] h-[100vh] sm:w-[150vh] sm:h-[150vh] md:w-[150vh] md:h-[150vh] lg:w-screen lg:h-[150vh] absolute bottom-1/4 left-1/2 -translate-x-1/2"
+                    style="will-change: background; mask-image: radial-gradient(circle, black 30%, transparent 80%);"
+                    id="blur-bg-effect-animation"
                 ></div>
             </div>
         </>
