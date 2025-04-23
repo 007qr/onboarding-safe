@@ -49,7 +49,7 @@ const App: Component = () => {
                             {/* TODO: Style the input */}
                             <Input setFlow={setFlow} next="phone" />
                             <div class="flex gap-6">
-                                <Button onClick={() => setFlow("name")}>Next</Button>
+                                <Button onClick={() => setFlow("phone")}>Next</Button>
                                 <div class="font-normal flex items-center gap-1 text-sm">
                                     <img src="/arrow-subdirectory.svg" class="bg-gray-200 rounded-lg p-1"/>
                                     <p>Or Press <span class="font-semibold">Enter</span></p>
@@ -73,7 +73,7 @@ const App: Component = () => {
                             {/* TODO: Style the input */}
                             <Input setFlow={setFlow} next="otp" />
                             <div class="flex gap-6">
-                                <Button onClick={() => setFlow("name")}>Next</Button>
+                                <Button onClick={() => setFlow("otp")}>Next</Button>
                                 <div class="font-normal flex items-center gap-1 text-sm">
                                     <img src="/arrow-subdirectory.svg" class="bg-gray-200 rounded-lg p-1"/>
                                     <p>Or Press <span class="font-semibold">Enter</span></p>
@@ -97,7 +97,7 @@ const App: Component = () => {
                             {/* TODO: Style the input */}
                             <Input setFlow={setFlow} next="done" />
                             <div class="flex gap-6">
-                                <Button onClick={() => setFlow("name")}>Next</Button>
+                                <Button onClick={() => setFlow("done")}>Next</Button>
                                 <div class="font-normal flex items-center gap-1 text-sm">
                                     <img src="/arrow-subdirectory.svg" class="bg-gray-200 rounded-lg p-1"/>
                                     <p>Or Press <span class="font-semibold">Enter</span></p>

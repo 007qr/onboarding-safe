@@ -101,6 +101,18 @@ export default function Input(props: {
         caretRef.style.height = `${caretHeight}px`;
         caretRef.style.top = `${(ref.offsetHeight - caretHeight) / 2}px`;
         caretRef.style.display = isFocused() ? "block" : "none";
+
+        if (containerRef) {
+            if (
+                containerRef.clientWidth >
+                parseMaxWidth(maxWidth, containerRef) - 10
+            ) {
+                containerRef.style.maskImage =
+                    "linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 8%, black 5%, black 95%, rgba(0, 0, 0, 2.5) 69%, transparent 100%)";
+            } else {
+                containerRef.style.maskImage = "";
+            }
+        }
     };
 
     const handleFocus = () => {
@@ -148,12 +160,10 @@ export default function Input(props: {
 
     return (
         <div
-            class="relative inline-block overflow-hidden"
+            class="relative inline-block overflow-hidden z-0"
             ref={containerRef}
             style={{
                 "max-width": maxWidth,
-                "mask-image":
-                    "linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.5) 2%,  black 5%,  black 95%,  rgba(0, 0, 0, 0.5) 98%,  transparent 100%)",
             }}
         >
             <input
@@ -172,7 +182,7 @@ export default function Input(props: {
                 }}
             />
             {/* Custom caret */}
-            <div ref={caretRef} class="custom-caret"></div>
+            <div ref={caretRef} class="custom-caret z-10"></div>
             {/* Hidden span to measure text width */}
             <span
                 ref={measureRef}
