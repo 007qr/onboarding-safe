@@ -25,6 +25,14 @@ html {
     animation: fade-in 1s steps(45, end) forwards;
 } 
 
+div[contenteditable]:empty::before {
+    content: attr(aria-placeholder); /* Use the data-placeholder attribute */
+    color: var(--color-gray-300); /* Style the placeholder text */
+    font-size: inherit;
+    pointer-events: none; /* Prevent the placeholder from being selected */
+}
+
+
 @keyframes fade-in {
     from {
         opacity: 0;
