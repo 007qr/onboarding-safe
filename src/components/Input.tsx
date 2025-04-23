@@ -6,7 +6,8 @@ import parseMaxWidth from "../utils/parseWidth";
 export default function Input(props: {
     setFlow: Setter<Flow>;
     next: Flow;
-    maxWidth?: string; 
+    maxWidth?: string;
+    fontSize?: string; // Add font size prop
 }) {
     let ref: HTMLInputElement | undefined;
     let containerRef: HTMLDivElement | undefined;
@@ -17,7 +18,9 @@ export default function Input(props: {
     const [caretPosition, setCaretPosition] = createSignal<number>(0);
     const [isFocused, setIsFocused] = createSignal<boolean>(false);
 
-    const maxWidth = props.maxWidth || "80vw";
+    // Set defaults if not provided
+    const maxWidth = props.maxWidth || "364px";
+    const fontSize = props.fontSize || "48px"; // Default font size set to 48px
 
     const handleKeyDown = (
         e: KeyboardEvent & {
@@ -49,6 +52,7 @@ export default function Input(props: {
         const value = (e.target as HTMLInputElement).value;
         setInput(value);
 
+        // Update container width with max width constraint
         if (measureRef && containerRef) {
             measureRef.textContent = value || "type here";
             const newWidth = Math.min(
@@ -57,6 +61,7 @@ export default function Input(props: {
             );
             containerRef.style.width = `${newWidth}px`;
 
+            // If content exceeds max width, adjust scroll position
             if (
                 ref &&
                 measureRef.offsetWidth >
@@ -87,11 +92,14 @@ export default function Input(props: {
 
         caretX = Math.max(0, Math.min(caretX, ref.clientWidth - 4));
 
+        const fontSizeValue = parseInt(fontSize);
+        const caretWidth = Math.max(4, Math.round(fontSizeValue / 12)); // Scale caret width with font size
+        const caretHeight = Math.round(fontSizeValue * 0.9); // 70% of font size
+
+        caretRef.style.width = `${caretWidth}px`;
         caretRef.style.left = `${caretX}px`;
-        caretRef.style.height = `${ref.offsetHeight * 0.7}px`;
-        caretRef.style.top = `${
-            (ref.offsetHeight - parseFloat(caretRef.style.height)) / 2
-        }px`;
+        caretRef.style.height = `${caretHeight}px`;
+        caretRef.style.top = `${(ref.offsetHeight - caretHeight) / 2}px`;
         caretRef.style.display = isFocused() ? "block" : "none";
     };
 
@@ -121,6 +129,7 @@ export default function Input(props: {
         ref?.focus();
         setIsFocused(true);
 
+        // Set initial container width with max width constraint
         if (measureRef && containerRef) {
             measureRef.textContent = "type here";
             const newWidth = Math.min(
@@ -135,28 +144,17 @@ export default function Input(props: {
             setCaretPosition(ref.selectionStart || 0);
             updateCaretPosition();
         }
-
-        const handleResize = () => {
-            updateCaretPosition();
-            // Re-evaluate max width on resize
-            if (measureRef && containerRef) {
-                const newWidth = Math.min(
-                    measureRef.offsetWidth + 10,
-                    parseMaxWidth(maxWidth, containerRef)
-                );
-                containerRef.style.width = `${newWidth}px`;
-            }
-        };
-
-        window.addEventListener("resize", handleResize);
-        onCleanup(() => window.removeEventListener("resize", handleResize));
     });
 
     return (
         <div
             class="relative inline-block overflow-hidden"
             ref={containerRef}
-            style={{ "max-width": maxWidth }}
+            style={{
+                "max-width": maxWidth,
+                "mask-image":
+                    "linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.5) 2%,  black 5%,  black 95%,  rgba(0, 0, 0, 0.5) 98%,  transparent 100%)",
+            }}
         >
             <input
                 ref={ref}
@@ -166,16 +164,20 @@ export default function Input(props: {
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 onClick={handleClick}
-                class="text-[64px] outline-none font-bold placeholder:text-gray-300 w-full px-0 auto-expand-input"
+                class="outline-none font-bold placeholder:text-gray-300 w-full px-0 auto-expand-input"
                 placeholder="type here"
-                style={{ "caret-color": "transparent" }}
+                style={{
+                    "caret-color": "transparent",
+                    "font-size": fontSize,
+                }}
             />
             {/* Custom caret */}
             <div ref={caretRef} class="custom-caret"></div>
             {/* Hidden span to measure text width */}
             <span
                 ref={measureRef}
-                class="text-[64px] font-bold invisible absolute top-0 left-0 whitespace-pre pointer-events-none"
+                class="invisible absolute top-0 left-0 whitespace-pre pointer-events-none font-bold"
+                style={{ "font-size": fontSize }}
                 aria-hidden="true"
             ></span>
         </div>

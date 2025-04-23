@@ -6,7 +6,7 @@ import Input from "./components/Input";
 export type Flow = "email" | "name" | "phone" | "otp" | "done";
 
 const App: Component = () => {
-    const [flow, setFlow] = createSignal<Flow>("email");
+    const [flow, setFlow] = createSignal<Flow>("name");
 
     return (
         <>
@@ -14,12 +14,12 @@ const App: Component = () => {
                 <Presence>
                     <Show when={flow() == "email"}>
                         <Motion.div 
-                            class="flex flex-col items-center font-medium gap-[30px] absolute"
+                            class="flex flex-col items-center font-medium gap-[30px] absolute w-[364px]"
                             initial={{ opacity: 0, y: 100, transition: { easing: 'ease-in', duration: .6 } }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 1.01, y: -100, transition: { duration: 1.25, easing: [0.16, 1, 0.29, 0.99] } }}
                             >
-                            <h4 class="text-3xl font-bold">
+                            <h4 class="text-2xl font-bold">
                                 Get started with your email
                             </h4>
 
@@ -36,11 +36,15 @@ const App: Component = () => {
                     </Show>
                     <Show when={flow() == "name"}>
                         <Motion.div
-                            class="flex flex-col items-center font-medium gap-[30px] absolute"
+                            class="flex flex-col items-center font-medium gap-[30px] absolute w-[364px]"
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0, transition: { delay: 0.38, easing: [0.19, 1, 0.22, 1], duration: 1.2 } }}
                             exit={{ opacity: 0, y: -100, transition: { duration: 1.25, easing: [0.16, 1, 0.29, 0.99] } }}
                         >
+                            <span onclick={() => setFlow("email")} class="self-start w-[20vw] flex gap-1 text-sm font-bold">
+                                <img src="/arrow-back.svg" alt="" />
+                                <p>Back</p>
+                            </span>
                             <h4 class="text-3xl font-bold">Your Full Name</h4>
                             {/* TODO: Style the input */}
                             <Input setFlow={setFlow} next="phone" />
@@ -56,11 +60,15 @@ const App: Component = () => {
 
                     <Show when={flow() == "phone"}>
                         <Motion.div
-                            class="flex flex-col items-center font-medium gap-[30px] absolute"
+                            class="flex flex-col items-center font-medium gap-[30px] absolute w-[364px]"
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0, transition: { delay: 0.38,easing: [0.19, 1, 0.22, 1], duration: 1.2 } }}
                             exit={{ opacity: 0, y: -100, transition: { duration: 1.25, easing: [0.16, 1, 0.29, 0.99] } }}
                         >
+                            <span onclick={() => setFlow("name")} class="self-start w-[20vw] flex gap-1 text-sm font-bold">
+                                <img src="/arrow-back.svg" alt="" />
+                                <p>Back</p>
+                            </span>
                             <h4 class="text-3xl font-bold">Phone Number</h4>
                             {/* TODO: Style the input */}
                             <Input setFlow={setFlow} next="otp" />
@@ -76,11 +84,15 @@ const App: Component = () => {
 
                     <Show when={flow() == "otp"}>
                         <Motion.div
-                            class="flex flex-col items-center font-medium gap-[30px] absolute"
+                            class="flex flex-col items-center font-medium gap-[30px] absolute w-[364px]"
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0, transition: { delay: 0.38,easing: [0.19, 1, 0.22, 1], duration: 1.2 } }}
                             exit={{ opacity: 0, y: -100, transition: { duration: 1.25, easing: [0.16, 1, 0.29, 0.99] } }}
                         >
+                            <span onclick={() => setFlow("phone")} class="self-start w-[20vw] flex gap-1 text-sm font-bold">
+                                <img src="/arrow-back.svg" alt="" />
+                                <p>Back</p>
+                            </span>
                             <h4 class="text-3xl font-bold">OTP</h4>
                             {/* TODO: Style the input */}
                             <Input setFlow={setFlow} next="done" />
@@ -96,7 +108,7 @@ const App: Component = () => {
 
                     <Show when={flow() == "done"}>
                         <Motion.div
-                            class="flex flex-col items-center font-medium gap-[30px] absolute"
+                            class="flex flex-col items-center font-medium gap-[30px] absolute w-[364px]"
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0, transition: { delay: 0.38, easing: [0.19, 1, 0.22, 1], duration: 1.2 } }}
                             exit={{ opacity: 0, y: -100, transition: { duration: 1.25, easing: [0.16, 1, 0.29, 0.99] } }}
