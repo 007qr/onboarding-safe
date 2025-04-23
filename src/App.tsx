@@ -15,9 +15,9 @@ const App: Component = () => {
                     <Show when={flow() == "email"}>
                         <Motion.div 
                             class="flex flex-col items-center font-medium gap-[30px] absolute"
-                            initial={{ opacity: 0, y: 100 }}
+                            initial={{ opacity: 0, y: 100, transition: { easing: 'ease-in', duration: 0.6 } }}
                             animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -100, transition: { duration: 0.8 } }}
+                            exit={{ opacity: 0, scale: 1.01, y: -100, transition: { duration: 0.7, easing: [0.215, 0.61, 0.355, 1] } }}
                             >
                             <h4 class="text-3xl font-bold">
                                 Get started with your email
@@ -25,18 +25,17 @@ const App: Component = () => {
 
                             {/* TODO: Style the input */}
                             <Input setFlow={setFlow} next="name" />
-                            <Button>Get Started</Button>
+                            <Button onClick={() => setFlow("name")}>Get Started</Button>
 
                             <p></p>
                         </Motion.div>
                     </Show>
-
                     <Show when={flow() == "name"}>
                         <Motion.div
                             class="flex flex-col items-center font-medium gap-[30px] absolute"
                             initial={{ opacity: 0, y: 100 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -100, transition: { duration: 0.8 } }}
+                            animate={{ opacity: 1, y: 0, transition: { delay: 0.2,easing: [0.215, 0.61, 0.355, 1], duration: 0.5 } }}
+                            exit={{ opacity: 0, y: -100, transition: { duration: 0.7, easing: [0.215, 0.61, 0.355, 1] } }}
                         >
                             <h4 class="text-3xl font-bold">Your Full Name</h4>
                             {/* TODO: Style the input */}
@@ -49,8 +48,8 @@ const App: Component = () => {
                         <Motion.div
                             class="flex flex-col items-center font-medium gap-[30px] absolute"
                             initial={{ opacity: 0, y: 100 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -100, transition: { duration: 0.8 } }}
+                            animate={{ opacity: 1, y: 0, transition: { delay: 0.2,easing: [0.215, 0.61, 0.355, 1], duration: 0.5 } }}
+                            exit={{ opacity: 0, y: -100, transition: { duration: 0.7, easing: [0.215, 0.61, 0.355, 1] } }}
                         >
                             <h4 class="text-3xl font-bold">Phone Number</h4>
                             {/* TODO: Style the input */}
@@ -63,8 +62,8 @@ const App: Component = () => {
                         <Motion.div
                             class="flex flex-col items-center font-medium gap-[30px] absolute"
                             initial={{ opacity: 0, y: 100 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -100, transition: { duration: 0.8 } }}
+                            animate={{ opacity: 1, y: 0, transition: { delay: 0.2,easing: [0.215, 0.61, 0.355, 1], duration: 0.5 } }}
+                            exit={{ opacity: 0, y: -100, transition: { duration: 0.7, easing: [0.215, 0.61, 0.355, 1] } }}
                         >
                             <h4 class="text-3xl font-bold">OTP</h4>
                             {/* TODO: Style the input */}
@@ -77,8 +76,8 @@ const App: Component = () => {
                         <Motion.div
                             class="flex flex-col items-center font-medium gap-[30px] absolute"
                             initial={{ opacity: 0, y: 100 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -100, transition: { duration: 0.8 } }}
+                            animate={{ opacity: 1, y: 0, transition: { delay: 0.2,easing: [0.215, 0.61, 0.355, 1], duration: 0.5 } }}
+                            exit={{ opacity: 0, y: -100, transition: { duration: 0.7, easing: [0.215, 0.61, 0.355, 1] } }}
                         >
                             <h4 class="text-3xl font-bold">Congratulations 🎊</h4>
                             <Button>Next</Button>

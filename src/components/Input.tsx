@@ -15,6 +15,7 @@ export default function Input(props: { setFlow: Setter<Flow>; next: Flow }) {
           e.preventDefault(); // <-- prevent newline insertion
           // TODO: validated email
           props.setFlow(props.next);
+          ref?.blur(); // unfocus input
         } else {
           setInput(val => val + e.key); // use `e.key` instead of `e.code` for actual character
         }
