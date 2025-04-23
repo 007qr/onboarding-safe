@@ -2,11 +2,12 @@ import { Component, createSignal, Show } from "solid-js";
 import { Motion, Presence } from "solid-motionone";
 import Button from "./components/Button";
 import Input from "./components/Input";
+import OTPInput from "./components/OTPInput";
 
 export type Flow = "email" | "name" | "phone" | "otp" | "done";
 
 const App: Component = () => {
-    const [flow, setFlow] = createSignal<Flow>("email");
+    const [flow, setFlow] = createSignal<Flow>("otp");
 
     return (
         <>
@@ -95,7 +96,7 @@ const App: Component = () => {
                             </span>
                             <h4 class="text-3xl font-bold">OTP</h4>
                             {/* TODO: Style the input */}
-                            <Input setFlow={setFlow} next="done" />
+                            <OTPInput setFlow={setFlow} next="done" />
                             <div class="flex gap-6">
                                 <Button onClick={() => setFlow("done")}>Next</Button>
                                 <div class="font-normal flex items-center gap-1 text-sm">

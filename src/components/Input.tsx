@@ -1,4 +1,4 @@
-import { createSignal, onMount, onCleanup, Setter } from "solid-js";
+import { createSignal, onMount, Setter } from "solid-js";
 import { Flow } from "../App";
 import { DOMElement } from "solid-js/jsx-runtime";
 import parseMaxWidth from "../utils/parseWidth";
@@ -7,7 +7,7 @@ export default function Input(props: {
     setFlow: Setter<Flow>;
     next: Flow;
     maxWidth?: string;
-    fontSize?: string; // Add font size prop
+    fontSize?: string; 
 }) {
     let ref: HTMLInputElement | undefined;
     let containerRef: HTMLDivElement | undefined;
@@ -18,9 +18,8 @@ export default function Input(props: {
     const [caretPosition, setCaretPosition] = createSignal<number>(0);
     const [isFocused, setIsFocused] = createSignal<boolean>(false);
 
-    // Set defaults if not provided
     const maxWidth = props.maxWidth || "364px";
-    const fontSize = props.fontSize || "48px"; // Default font size set to 48px
+    const fontSize = props.fontSize || "48px";
 
     const handleKeyDown = (
         e: KeyboardEvent & {
@@ -93,8 +92,8 @@ export default function Input(props: {
         caretX = Math.max(0, Math.min(caretX, ref.clientWidth - 4));
 
         const fontSizeValue = parseInt(fontSize);
-        const caretWidth = Math.max(4, Math.round(fontSizeValue / 12)); // Scale caret width with font size
-        const caretHeight = Math.round(fontSizeValue * 0.9); // 70% of font size
+        const caretWidth = Math.max(4, Math.round(fontSizeValue / 12));
+        const caretHeight = Math.round(fontSizeValue * 0.9); 
 
         caretRef.style.width = `${caretWidth}px`;
         caretRef.style.left = `${caretX}px`;
@@ -141,7 +140,6 @@ export default function Input(props: {
         ref?.focus();
         setIsFocused(true);
 
-        // Set initial container width with max width constraint
         if (measureRef && containerRef) {
             measureRef.textContent = "type here";
             const newWidth = Math.min(
