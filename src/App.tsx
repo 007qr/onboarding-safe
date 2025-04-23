@@ -6,7 +6,7 @@ import Input from "./components/Input";
 export type Flow = "email" | "name" | "phone" | "otp" | "done";
 
 const App: Component = () => {
-    const [flow, setFlow] = createSignal<Flow>("name");
+    const [flow, setFlow] = createSignal<Flow>("email");
 
     return (
         <>
@@ -15,8 +15,8 @@ const App: Component = () => {
                     <Show when={flow() == "email"}>
                         <Motion.div 
                             class="flex flex-col items-center font-medium gap-[30px] absolute w-[364px]"
-                            initial={{ opacity: 0, y: 100, transition: { easing: 'ease-in', duration: .6 } }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, y: 100 }}
+                            animate={{ opacity: 1, y: 0, transition: { delay: 0.38, easing: [0.19, 1, 0.22, 1], duration: 1.2 } }}
                             exit={{ opacity: 0, scale: 1.01, y: -100, transition: { duration: 1.25, easing: [0.16, 1, 0.29, 0.99] } }}
                             >
                             <h4 class="text-2xl font-bold">
@@ -41,7 +41,7 @@ const App: Component = () => {
                             animate={{ opacity: 1, y: 0, transition: { delay: 0.38, easing: [0.19, 1, 0.22, 1], duration: 1.2 } }}
                             exit={{ opacity: 0, y: -100, transition: { duration: 1.25, easing: [0.16, 1, 0.29, 0.99] } }}
                         >
-                            <span onclick={() => setFlow("email")} class="self-start w-[20vw] flex gap-1 text-sm font-bold">
+                            <span onclick={() => setFlow("email")} class="cursor-pointer self-start w-[20vw] flex gap-1 text-sm font-bold">
                                 <img src="/arrow-back.svg" alt="" />
                                 <p>Back</p>
                             </span>
@@ -65,7 +65,7 @@ const App: Component = () => {
                             animate={{ opacity: 1, y: 0, transition: { delay: 0.38,easing: [0.19, 1, 0.22, 1], duration: 1.2 } }}
                             exit={{ opacity: 0, y: -100, transition: { duration: 1.25, easing: [0.16, 1, 0.29, 0.99] } }}
                         >
-                            <span onclick={() => setFlow("name")} class="self-start w-[20vw] flex gap-1 text-sm font-bold">
+                            <span onclick={() => setFlow("name")} class="cursor-pointer self-start w-[20vw] flex gap-1 text-sm font-bold">
                                 <img src="/arrow-back.svg" alt="" />
                                 <p>Back</p>
                             </span>
@@ -89,7 +89,7 @@ const App: Component = () => {
                             animate={{ opacity: 1, y: 0, transition: { delay: 0.38,easing: [0.19, 1, 0.22, 1], duration: 1.2 } }}
                             exit={{ opacity: 0, y: -100, transition: { duration: 1.25, easing: [0.16, 1, 0.29, 0.99] } }}
                         >
-                            <span onclick={() => setFlow("phone")} class="self-start w-[20vw] flex gap-1 text-sm font-bold">
+                            <span onclick={() => setFlow("phone")} class="cursor-pointer self-start w-[20vw] flex gap-1 text-sm font-bold">
                                 <img src="/arrow-back.svg" alt="" />
                                 <p>Back</p>
                             </span>
