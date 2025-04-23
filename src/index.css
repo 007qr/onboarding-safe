@@ -23,15 +23,35 @@ html {
 .animate-fade-in {
     opacity: 0;
     animation: fade-in 1s steps(45, end) forwards;
-} 
-
-div[contenteditable]:empty::before {
-    content: attr(aria-placeholder); /* Use the data-placeholder attribute */
-    color: var(--color-gray-300); /* Style the placeholder text */
-    font-size: inherit;
-    pointer-events: none; /* Prevent the placeholder from being selected */
 }
 
+.custom-caret {
+    position: absolute;
+    width: 4px;
+    background-color: var(--color-blue-500);
+    animation: caretBlink 1s infinite;
+    pointer-events: none;
+}
+
+.auto-expand-input {
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none; 
+}
+
+.auto-expand-input::-webkit-scrollbar {
+    display: none; 
+}
+
+@keyframes caretBlink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
 
 @keyframes fade-in {
     from {
@@ -41,7 +61,6 @@ div[contenteditable]:empty::before {
         opacity: 100%;
     }
 }
-
 
 @keyframes animateIn {
     from {
@@ -56,4 +75,3 @@ div[contenteditable]:empty::before {
         filter: blur(0px);
     }
 }
-
